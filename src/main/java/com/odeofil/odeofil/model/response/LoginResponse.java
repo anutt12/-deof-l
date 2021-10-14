@@ -6,7 +6,7 @@ public class LoginResponse {
     public LoginResponse(String JWT){
         this.JWT = JWT;
     }
-    
+
     public String getJWT() {
         return JWT;
     }
@@ -15,3 +15,5 @@ public class LoginResponse {
         this.JWT = JWT;
     }
 }
+
+
