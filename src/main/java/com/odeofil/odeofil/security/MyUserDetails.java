@@ -1,6 +1,7 @@
 package com.odeofil.odeofil.security;
 
 import com.food.recipes.model.User;
+import com.odeofil.odeofil.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
