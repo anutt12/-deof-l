@@ -1,10 +1,27 @@
 package com.odeofil.odeofil.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "profiles")
 public class UserProfile {
 
+@Id
+@Column
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+@Column
     private String userName;
+
+@Column
     private String profileDescription;
+
+@JsonIgnore
+@OneToOne(mappedBy = "userProfile")
+private User user;
 
     public UserProfile() {
     }
