@@ -1,7 +1,13 @@
 package com.odeofil.odeofil.controller;
 
 import com.odeofil.odeofil.model.User;
+import com.odeofil.odeofil.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 public class UserController {
 

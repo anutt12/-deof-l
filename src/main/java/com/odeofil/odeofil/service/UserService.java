@@ -1,6 +1,9 @@
 package com.odeofil.odeofil.service;
 
+import com.odeofil.odeofil.exception.InformationExistException;
 import com.odeofil.odeofil.model.User;
+import com.odeofil.odeofil.repository.UserRepository;
+import com.odeofil.odeofil.security.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
