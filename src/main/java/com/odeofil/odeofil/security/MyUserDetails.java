@@ -1,6 +1,6 @@
 package com.odeofil.odeofil.security;
 
-import com.food.recipes.model.User;
+
 import com.odeofil.odeofil.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,9 +21,7 @@ public class MyUserDetails implements UserDetails {
     }
 
     @Override
-    public Collection<?> extends GrantedAuthority getAuthorities() {
-        return new HashSet<GrantedAuthority>();
-    }
+    public Collection<? extends GrantedAuthority> getAuthorities() {return new HashSet<GrantedAuthority>();}
 
     @Override
     public String getPassword() {

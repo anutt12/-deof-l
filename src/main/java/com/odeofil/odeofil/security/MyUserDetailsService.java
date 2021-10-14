@@ -1,7 +1,6 @@
 package com.odeofil.odeofil.security;
 
-import com.food.recipes.model.User;
-import com.food.recipes.service.UserService;
+
 import com.odeofil.odeofil.model.User;
 import com.odeofil.odeofil.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
