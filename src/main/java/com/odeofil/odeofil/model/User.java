@@ -1,12 +1,35 @@
 package com.odeofil.odeofil.model;
 
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
 
+@Id
+@Column
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+@Column
     private String firstName;
+
+@Column
     private String lastName;
+
+@Column(unique = true)
     private String emailAddress;
+
+@Column
+@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+
+@OneToOne(cascade = CascadeType.ALL)
+@JoinColumn(name = "profile_id", referencedColumnName = "id")
+private UserProfile userProfile;
 
     public User() {
     }
@@ -68,5 +91,13 @@ public class User {
                 ", emailAddress='" + emailAddress + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public UserProfile getUserProfile(){
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile){
+        this.userProfile = userProfile;
     }
 }

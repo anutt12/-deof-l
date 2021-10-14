@@ -2,6 +2,8 @@ package com.odeofil.odeofil.service;
 
 import com.odeofil.odeofil.exception.InformationExistException;
 import com.odeofil.odeofil.model.User;
+import com.odeofil.odeofil.model.response.LoginRequest;
+import com.odeofil.odeofil.model.response.LoginResponse;
 import com.odeofil.odeofil.repository.UserRepository;
 import com.odeofil.odeofil.security.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +49,7 @@ public class UserService {
     }
 
     public ResponseEntity<?> loginUser(LoginRequest loginRequest){
-        System.out.println("service is caling loginUser ==>");
+        System.out.println("service is calling loginUser ==>");
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginRequest.getEmail(),
                 loginRequest.getPassword()));
