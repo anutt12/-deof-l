@@ -28,7 +28,7 @@ public class LibraryController {
     }
 
         @PostMapping("/library/")
-        public Library createLibrary(@RequestBody Library libraryObject){
+        public Library createLibrary(@RequestBody Library libraryObject) {
             System.out.println("calling createLibrary()");
             return libraryService.createLibrary(libraryObject);
         }

@@ -70,4 +70,8 @@ public class Library {
         this.userProfile = userProfile;
     }
 
+    public List<Album> getAlbumList(){return albumList;}
+
+    public void  setAlbumList(List<Album> albumList) {this.albumList = albumList;}
+
 }
