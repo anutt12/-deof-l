@@ -42,33 +42,42 @@ public class LibraryService {
         }
     }
 
-    public Library createLibrary(Library libraryObject){
+    public Library createLibrary(Library libraryObject) {
         System.out.println("calling createLibrary()");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(userDetails.getUser().getId());
         Library library = libraryRepository.findLibraryIdAndUserId(libraryObject, userDetails.getUser().getId());
-        if(library != null){
+        if (library != null) {
             throw new InformationExistException("library with the id " + libraryObject.getId() + " already exists");
         } else {
             libraryObject.setId(userDetails.getUser().getId());
             return libraryRepository.save(libraryObject);
         }
+    }
 
-        public Library updateLibrary(Long libraryId, Library libraryObject){
-            System.out.println("calling updateLibrary()");
-            MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            Library library = libraryRepository.findLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
-            if(library == null){
-                throw new InformationNotFoundException("library with id " + libraryId + " not found");
-            } else {
-                library.setUserProfile(userDetails.getUser().getId());
-                return libraryRepository.save(library);
-            }
-        }
-
-        public String deleteLibrary(Long libraryId){
-            
+    public Library updateLibrary(Long libraryId, Library libraryObject) {
+        System.out.println("calling updateLibrary()");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Library library = libraryRepository.findLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null) {
+            throw new InformationNotFoundException("library with id " + libraryId + " not found");
+        } else {
+            library.setUserProfile(userDetails.getUser().getId());
+            return libraryRepository.save(library);
         }
     }
+
+    public String deleteLibrary(Long libraryId) {
+        System.out.println("calling deleteLibrary");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Library library = libraryRepository.findLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if(library == null){
+            throw new InformationNotFoundException("library with the id " + libraryId + " not found");
+        } else {
+            libraryRepository.deleteById(libraryId);
+            return "Library with the id " + libraryId + " has been successfully deleted";
+        }
+    }
+
 
 }
