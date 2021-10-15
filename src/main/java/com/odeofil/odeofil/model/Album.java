@@ -42,6 +42,18 @@ public class Album {
     @Column
     private Date releaseDate;
 
+    public Album() {
+    }
+
+    public Album(Long id, String name, boolean isPublic, String description, String label, Date releaseDate) {
+        this.id = id;
+        this.name = name;
+        this.isPublic = isPublic;
+        this.description = description;
+        this.label = label;
+        this.releaseDate = releaseDate;
+    }
+
     public Long getId() {
         return id;
     }
@@ -112,5 +124,17 @@ public class Album {
 
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Album{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", isPublic=" + isPublic +
+                ", description='" + description + '\'' +
+                ", label='" + label + '\'' +
+                ", releaseDate=" + releaseDate +
+                '}';
     }
 }
