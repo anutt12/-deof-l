@@ -24,9 +24,9 @@ public class Artist {
     private boolean isPublic;
 
     @ManyToOne
-    @JoinColumn(name = "userProfile_id")
+    @JoinColumn(name = "user_id")
     @JsonIgnore
-    private UserProfile userProfile;
+    private User user;
 
     @JsonIgnore
     @ManyToOne
@@ -75,6 +75,22 @@ public class Artist {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
     }
 }
 
