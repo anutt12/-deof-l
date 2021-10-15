@@ -14,11 +14,8 @@ public class User {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-@Column
-    private String firstName;
-
-@Column
-    private String lastName;
+    @Column
+    private String userName;
 
 @Column(unique = true)
     private String emailAddress;
@@ -36,8 +33,7 @@ private UserProfile userProfile;
 
     public User(Long id, String firstName, String lastName, String emailAddress, String password) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.userName = userName;
         this.emailAddress = emailAddress;
         this.password = password;
     }
@@ -50,20 +46,12 @@ private UserProfile userProfile;
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmailAddress() {
@@ -86,8 +74,7 @@ private UserProfile userProfile;
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
                 ", password='" + password + '\'' +
                 '}';

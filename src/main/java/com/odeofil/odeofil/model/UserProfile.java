@@ -13,8 +13,11 @@ public class UserProfile {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-@Column
-    private String userName;
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
 
 @Column
     private String profileDescription;
@@ -28,7 +31,8 @@ private User user;
 
     public UserProfile(Long id, String userName, String profileDescription) {
         this.id = id;
-        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.profileDescription = profileDescription;
     }
 
@@ -40,12 +44,20 @@ private User user;
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getProfileDescription() {
@@ -60,7 +72,8 @@ private User user;
     public String toString() {
         return "UserProfile{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", profileDescription='" + profileDescription + '\'' +
                 '}';
     }

@@ -22,7 +22,7 @@ public class LibraryController {
     }
 
     @GetMapping("/library/{libraryId}")
-    public List<Library> getLibrary(@PathVariable Long libraryId) {
+    public Library getLibrary(@PathVariable Long libraryId) {
         System.out.println("calling getLibrary()");
         return libraryService.getLibrary(libraryId);
     }

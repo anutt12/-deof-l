@@ -15,6 +15,10 @@ public class Library {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
+    private String name;
+    @Column
+    private String description;
 
     @OneToMany(mappedBy = "library", orhpanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -25,17 +29,22 @@ public class Library {
     private List<Album> albumList;
 
     @OneToOne
-    @JoinColumn(name = "user_profile_id")
+    @JoinColumn(name = "user_id")
     @JsonIgnore
-    private UserProfile userProfile;
+    private User user;
+
+    public Library(Long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
 
     public Library(){
 
     }
 
-    public Library(Long id) {
-        this.id = id;
-    }
+
 
 
     public Long getId() {
@@ -47,13 +56,6 @@ public class Library {
     }
 
 
-    @Override
-    public String toString() {
-        return "Library{" +
-                "id=" + id +
-                '}';
-    }
-
     public List<Artist> getArtistList(){
         return artistList;
     }
@@ -62,16 +64,40 @@ public class Library {
         this.artistList = artistList;
     }
 
-    public UserProfile getUserProfile(){
-        return userProfile;
+    public User getUser(){
+        return user;
     }
 
-    public void setUserProfile(UserProfile userProfile){
-        this.userProfile = userProfile;
+    public void setUser(User user){
+        this.user = user;
     }
 
     public List<Album> getAlbumList(){return albumList;}
 
     public void  setAlbumList(List<Album> albumList) {this.albumList = albumList;}
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Library{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

@@ -5,12 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface LibraryRepository extends JpaRepository<Library, Long> {
 
-    Library findById(Long id);
-    List<Library> findByUserProfileId(Long userId);
-    Library findLibraryIdAndUserId(Long libraryId, Long userId);
+    Library findByName(String libraryName);
+    List<Library> findByUserId(Long userId);
+    Library findByLibraryIdAndUserId(Long libraryId, Long userId);
+    Library findByUserIdAndName(Long userId, String libraryName);
 
 }
