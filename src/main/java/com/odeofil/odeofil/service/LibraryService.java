@@ -3,6 +3,7 @@ package com.odeofil.odeofil.service;
 import com.odeofil.odeofil.exception.InformationExistException;
 import com.odeofil.odeofil.exception.InformationNotFoundException;
 import com.odeofil.odeofil.model.Library;
+import com.odeofil.odeofil.repository.ArtistRepository;
 import com.odeofil.odeofil.repository.LibraryRepository;
 import com.odeofil.odeofil.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class LibraryService {
         this.artistRepository = artistRepository;
     }
 
-    public List<Library> getLibrary() {
+    public List<Library> getLibrary(Long libraryId) {
         System.out.println("service calling getLibraries");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(userDetails.getUser().getId());

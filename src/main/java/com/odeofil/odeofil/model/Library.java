@@ -14,7 +14,7 @@ public class Library {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @OneToMany(mappedBy = "library", orhpanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
