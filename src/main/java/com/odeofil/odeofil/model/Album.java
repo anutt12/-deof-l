@@ -3,6 +3,7 @@ package com.odeofil.odeofil.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "albums")
@@ -32,5 +33,13 @@ public class Album {
     @JoinColumn(name = "artistId")
     private Artist artist;
 
+    @Column
+    private String description;
+
+    @Column
+    private String label;
+
+    @Column
+    private Date releaseDate;
 
 }
