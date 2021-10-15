@@ -2,6 +2,7 @@ package com.odeofil.odeofil.service;
 
 import com.odeofil.odeofil.exception.InformationExistException;
 import com.odeofil.odeofil.exception.InformationNotFoundException;
+import com.odeofil.odeofil.model.Artist;
 import com.odeofil.odeofil.model.Library;
 import com.odeofil.odeofil.repository.ArtistRepository;
 import com.odeofil.odeofil.repository.LibraryRepository;
@@ -97,5 +98,24 @@ public class LibraryService {
         }
     }
 
+    //*****Service for Artist Class*****//
+
+    public Artist createLibraryArtist(Long libraryId, Artist artistObject) {
+        System.out.println("service calling createLibraryArtist ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null) {
+            throw new InformationNotFoundException(
+                    "library with id " + libraryId + " does not belongs to this user or library does not exist");
+        }
+        Artist artist = artistRepository.findByUserIdAndName(userDetails.getUser().getId(), artistObject.getName());
+        if (artist != null) {
+            throw new InformationExistException("artist with name " + artist.getName() + " already exists");
+        }
+        artistObject.setUser(userDetails.getUser());
+        artistObject.setLibrary(library);
+        return artistRepository.save(artistObject);
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.odeofil.odeofil.repository;
 
 import com.odeofil.odeofil.model.Artist;
+import com.odeofil.odeofil.model.Library;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +18,8 @@ public interface ArtistRepository extends JpaRepository {
     Artist findByNameAndArtistId(String name, Long artistId);
 
     Artist findByNameAndArtistIdAndIdIsNot(String name, Long id, Long artistId);
+
+    Artist findByUserIdAndName(Long userId, String artistName);
 
 
 }
