@@ -17,7 +17,7 @@ public interface ArtistRepository extends JpaRepository {
     List<Artist> findByLibraryId(Long artistId);
     Artist findByNameAndArtistId(String name, Long artistId);
 
-    Artist findByNameAndArtistIdAndIdIsNot(String name, Long id, Long artistId);
+    Artist findByNameAndUserIdAndIdIsNot(String name, Long id, Long artistId);
 
     Artist findByUserIdAndName(Long userId, String artistName);
 

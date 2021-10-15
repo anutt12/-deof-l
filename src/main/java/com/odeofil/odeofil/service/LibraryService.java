@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LibraryService {
@@ -116,6 +117,77 @@ public class LibraryService {
         artistObject.setUser(userDetails.getUser());
         artistObject.setLibrary(library);
         return artistRepository.save(artistObject);
+    }
+
+    public List<Artist> getLibraryArtists(Long libraryId){
+        System.out.println("Calling the service for the view");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null){
+            throw new InformationNotFoundException("library with id " + libraryId + " " +
+                    "does not belong to this user or library does not exist");
+        }
+        return library.getArtistList();
+    }
+
+    public Artist updateLibraryArtists(Long libraryId, Long artistId, Artist artistObject) {
+        System.out.println("invoking the Services Method updateLibraryArtists");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null) {
+            throw new InformationNotFoundException("library with id " + libraryId +
+                    " does not belong to this user or library does not exist");
+        }
+        Optional<Artist> artist = artistRepository.findByLibraryId(
+                libraryId).stream().filter(p -> p.getId().equals(libraryId)).findFirst();
+        if (!artist.isPresent()) {
+            throw new InformationNotFoundException("artist with id " + artistId +
+                    " does not belong to this user or artist does not exist");
+        }
+        Artist oldArtist = artistRepository.findByNameAndUserIdAndIdIsNot(
+                artistObject.getName(), userDetails.getUser().getId(), artistId);
+        if (oldArtist != null) {
+            throw new InformationExistException("artist with name " + oldArtist.getName() + " already exists");
+        }
+        artist.get().setName(artistObject.getName());
+        artist.get().setDescription(artistObject.getDescription());
+        return artistRepository.save(artist.get());
+    }
+
+    public void deleteLibraryArtist(Long libraryId, Long artistId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null) {
+            throw new InformationNotFoundException("library with id " + libraryId +
+                    " doest not belong to this user or library does not exist");
+        }
+        Optional<Artist> artist = artistRepository.findByLibraryId(
+                libraryId).stream().filter(p -> p.getId().equals(artistId)).findFirst();
+        if (!artist.isPresent()) {
+            throw new InformationNotFoundException("artist with id " + artistId +
+                    " does not belong to this user or artist does not exist");
+        }
+        artistRepository.deleteById(artist.get().getId());
+    }
+
+    public Artist getLibraryArtist(Long libraryId, Long artistId) {
+        System.out.println("service calling getLibraryArtist");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null) {
+            throw new InformationNotFoundException("library with id " + libraryId +
+                    " doest not belong to this user or library does not exist");
+        }
+        Optional<Artist> artist = artistRepository.findByLibraryId(
+                libraryId).stream().filter(p -> p.getId().equals(artistId)).findFirst();
+        if (!artist.isPresent()) {
+            throw new InformationNotFoundException("artist with id " + artistId +
+                    " does not belong to this user or artist does not exist");
+        }
+        return artist.get();
     }
 
 }
