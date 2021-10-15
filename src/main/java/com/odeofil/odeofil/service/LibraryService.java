@@ -30,7 +30,7 @@ public class LibraryService {
         this.artistRepository = artistRepository;
     }
 
-    public List<Library> getLibraries() {
+    public List<Library> getLibrary() {
         System.out.println("service calling getLibraries");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(userDetails.getUser().getId());
