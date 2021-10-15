@@ -25,7 +25,11 @@ public class Album {
     private UserProfile userProfile;
 
     @ManyToOne
-    @JoinColumn(name = "artist_id")
+    @JoinColumn(name = "libraryId")
+    private Library library;
+
+    @ManyToOne
+    @JoinColumn(name = "artistId")
     private Artist artist;
 
 

@@ -14,4 +14,6 @@ public class Artist {
     @Column
     private String name;
 
+
+
 }
