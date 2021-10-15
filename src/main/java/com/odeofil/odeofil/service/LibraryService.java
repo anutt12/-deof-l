@@ -108,9 +108,9 @@ public class LibraryService {
         Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
         if (library == null) {
             throw new InformationNotFoundException(
-                    "library with id " + libraryId + " does not belongs to this user or library does not exist");
+                    "library with id " + libraryId + " does not belong to this user or library does not exist");
         }
-        Artist artist = artistRepository.findByUserIdAndName(userDetails.getUser().getId(), artistObject.getName());
+        Artist artist = artistRepository.findByNameAndUserId(artistObject.getName(), userDetails.getUser().getId());
         if (artist != null) {
             throw new InformationExistException("artist with name " + artist.getName() + " already exists");
         }

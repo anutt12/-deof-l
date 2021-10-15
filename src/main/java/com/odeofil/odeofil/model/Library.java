@@ -20,13 +20,13 @@ public class Library {
     @Column
     private String description;
 
-    @OneToMany(mappedBy = "library", orhpanRemoval = true)
+    @OneToMany(mappedBy = "library", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Artist> artistList;
 
-    @OneToMany(mappedBy = "library"), orphanRemoval = true)
-    @LazyCollection(LazyCollection.FALSE)
-    private List<Album> albumList;
+//    @OneToMany(mappedBy = "library"), orphanRemoval = true)
+//    @LazyCollection(LazyCollection.FALSE)
+//    private List<Album> albumList;
 
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -72,9 +72,9 @@ public class Library {
         this.user = user;
     }
 
-    public List<Album> getAlbumList(){return albumList;}
-
-    public void  setAlbumList(List<Album> albumList) {this.albumList = albumList;}
+//    public List<Album> getAlbumList(){return albumList;}
+//
+//    public void  setAlbumList(List<Album> albumList) {this.albumList = albumList;}
 
     public String getName() {
         return name;

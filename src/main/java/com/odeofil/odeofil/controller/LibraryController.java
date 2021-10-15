@@ -21,13 +21,13 @@ public class LibraryController {
         return "Hello Willie!";
     }
 
-    @GetMapping("/library/{libraryId}")
-    public List<Library> getLibrary(@PathVariable Long libraryId) {
+    @GetMapping("/libraries/{libraryId}")
+    public Library getLibrary(@PathVariable Long libraryId) {
         System.out.println("calling getLibrary()");
         return libraryService.getLibrary(libraryId);
     }
 
-        @PostMapping("/library/")
+        @PostMapping("/libraries/")
         public Library createLibrary(@RequestBody Library libraryObject){
             System.out.println("calling createLibrary()");
             return libraryService.createLibrary(libraryObject);

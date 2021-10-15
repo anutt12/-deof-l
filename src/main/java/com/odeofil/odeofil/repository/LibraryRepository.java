@@ -18,6 +18,8 @@ public interface LibraryRepository extends JpaRepository<Library, Long> {
 
     Library findByUserIdAndName(Long userId, String libraryName);
 
+    Library findByIdAndUserId(Long id, Long userId);
+
 }
 
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ArtistRepository extends JpaRepository {
+public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
     Artist findByName(String artistName);
 
@@ -20,6 +20,8 @@ public interface ArtistRepository extends JpaRepository {
     Artist findByNameAndUserIdAndIdIsNot(String name, Long id, Long artistId);
 
     Artist findByUserIdAndName(Long userId, String artistName);
+
+    Artist findByNameAndUserId(String name, Long userId);
 
 
 }
