@@ -15,7 +15,7 @@ public class MyUserDetails implements UserDetails {
     private String userName;
     private String password;
     private String emailAddress;
-    private Long id;
+//    private Long id;
 
 
     public MyUserDetails(User user) {
@@ -59,13 +59,13 @@ public class MyUserDetails implements UserDetails {
         return user;
     }
 
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    @Override
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    @Override
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 }
