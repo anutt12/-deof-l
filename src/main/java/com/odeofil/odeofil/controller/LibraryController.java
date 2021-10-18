@@ -4,8 +4,11 @@ import com.odeofil.odeofil.model.Artist;
 import com.odeofil.odeofil.model.Library;
 import com.odeofil.odeofil.repository.LibraryRepository;
 import com.odeofil.odeofil.service.LibraryService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -81,7 +84,16 @@ public class LibraryController {
         return libraryService.updateLibraryArtists(libraryId, artistId, artistObject);
     }
 
-
+    @DeleteMapping("/libraries/{libraryId}/artists/{artistId}")
+    public ResponseEntity<HashMap> deleteLibraryArtist(
+            @PathVariable(value = "libraryId") Long libraryId,
+            @PathVariable(value = "artistId") Long artistId){
+        System.out.println("calling deleteLibraryArtist() ==>");
+        libraryService.deleteLibraryArtist(libraryId, artistId);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("Status", "Artist with ID: " + artistId + " was successfully deleted");
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
+    }
 
 
 }
