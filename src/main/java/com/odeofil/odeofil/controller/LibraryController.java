@@ -5,6 +5,7 @@ import com.odeofil.odeofil.model.Artist;
 import com.odeofil.odeofil.model.Library;
 import com.odeofil.odeofil.repository.LibraryRepository;
 import com.odeofil.odeofil.service.LibraryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,12 @@ public class LibraryController {
     private LibraryRepository libraryRepository;
 
     private LibraryService libraryService;
+
+    @Autowired
+    public void setLibraryService(LibraryService libraryService) {this.libraryService = libraryService;}
+
+    @Autowired
+    public void setLibraryRepository(LibraryRepository libraryRepository) {this.libraryRepository = libraryRepository;}
 
     @GetMapping("/hello-Willie")
     public String helloWillie() {
