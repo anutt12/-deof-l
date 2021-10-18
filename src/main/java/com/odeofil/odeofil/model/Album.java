@@ -21,16 +21,16 @@ public class Album {
     private boolean isPublic;
 
     @ManyToOne
-    @JoinColumn(name = "userProfileId")
+    @JoinColumn(name = "user_Id")
     @JsonIgnore
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "libraryId")
+    @JoinColumn(name = "library_Id")
     private Library library;
 
     @ManyToOne
-    @JoinColumn(name = "artistId")
+    @JoinColumn(name = "artist_Id")
     private Artist artist;
 
     @Column
@@ -45,14 +45,14 @@ public class Album {
     public Album() {
     }
 
-    public Album(Long id, String name, boolean isPublic, String description, String label, Date releaseDate) {
-        this.id = id;
-        this.name = name;
-        this.isPublic = isPublic;
-        this.description = description;
-        this.label = label;
-        this.releaseDate = releaseDate;
-    }
+//    public Album(Long id, String name, boolean isPublic, String description, String label, Date releaseDate) {
+//        this.id = id;
+//        this.name = name;
+//        this.isPublic = isPublic;
+//        this.description = description;
+//        this.label = label;
+//        this.releaseDate = releaseDate;
+//    }
 
     public Long getId() {
         return id;

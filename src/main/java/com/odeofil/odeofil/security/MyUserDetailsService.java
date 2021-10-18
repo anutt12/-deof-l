@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 public class MyUserDetailsService implements UserDetailsService {
     private UserService userService;
 
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
+//    @Autowired
+//    private JwtRequestFilter jwtRequestFilter;
 
     @Autowired
     public void setUserService(UserService userService) {

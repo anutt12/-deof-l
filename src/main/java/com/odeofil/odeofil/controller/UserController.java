@@ -35,7 +35,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest){
-        System.out.println("Controller is callling loginUser ==>");
+        System.out.println("Controller is calling loginUser ==>");
         return userService.loginUser(loginRequest);
     }
 }
