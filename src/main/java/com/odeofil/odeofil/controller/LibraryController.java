@@ -117,5 +117,14 @@ public class LibraryController {
         return libraryService.createLibraryAlbum(libraryId, albumObject);
     }
 
+    @PutMapping("/libraries/{libraryId}/albums/{albumId}")
+    public Album updateLibraryAlbums(
+            @PathVariable(value = "libraryId") Long libraryId,
+            @PathVariable(value = "albumId") Long albumId, @RequestBody Album albumObject) {
+        System.out.println("Calling updateLibraryAlbum");
+        return libraryService.updateLibraryAlbums(libraryId, albumId, albumObject);
+    }
+
+    
 
 }
