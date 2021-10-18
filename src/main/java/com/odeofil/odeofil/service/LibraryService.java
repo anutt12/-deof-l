@@ -265,7 +265,21 @@ public class LibraryService {
         return albumRepository.save(album.get());
     }
 
-
-
-
+    public void deleteLibraryAlbum(Long libraryId, Long albumId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null) {
+            throw new InformationNotFoundException("library with id " + libraryId +
+                    " doest not belong to this user or library does not exist");
+        }
+        Optional<Album> album = albumRepository.findByLibraryId(
+                libraryId).stream().filter(p -> p.getId().equals(albumId)).findFirst();
+        if (!album.isPresent()) {
+            throw new InformationNotFoundException("album with id " + albumId +
+                    " does not belong to this user or album does not exist");
+        }
+        albumRepository.deleteById(album.get().getId());
+    }
+    
 }
