@@ -222,6 +222,50 @@ public class LibraryService {
         return library.getAlbumList();
     }
 
-    
+    public Album getLibraryAlbum(Long libraryId, Long albumId) {
+        System.out.println("service calling getLibraryAlbum");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null) {
+            throw new InformationNotFoundException("library with id " + libraryId +
+                    " doest not belong to this user or library does not exist");
+        }
+        Optional<Album> album = albumRepository.findByLibraryId(
+                libraryId).stream().filter(p -> p.getId().equals(albumId)).findFirst();
+        if (!album.isPresent()) {
+            throw new InformationNotFoundException("album with id " + albumId +
+                    " does not belong to this user or album does not exist");
+        }
+        return album.get();
+    }
+
+    public Album updateLibraryAlbums(Long libraryId, Long albumId, Album albumObject) {
+        System.out.println("invoking the Services Method updateLibraryAlbums");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null) {
+            throw new InformationNotFoundException("library with id " + libraryId +
+                    " does not belong to this user or library does not exist");
+        }
+        Optional<Album> album = albumRepository.findByLibraryId(
+                libraryId).stream().filter(p -> p.getId().equals(libraryId)).findFirst();
+        if (!album.isPresent()) {
+            throw new InformationNotFoundException("album with id " + albumId +
+                    " does not belong to this user or album does not exist");
+        }
+        Album oldAlbum = albumRepository.findByNameAndUserIdAndIdIsNot(
+                albumObject.getName(), userDetails.getUser().getId(), albumId);
+        if (oldAlbum != null) {
+            throw new InformationExistException("album with name " + oldAlbum.getName() + " already exists");
+        }
+        album.get().setName(albumObject.getName());
+        album.get().setDescription(albumObject.getDescription());
+        return albumRepository.save(album.get());
+    }
+
+
+
 
 }
