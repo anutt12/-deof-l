@@ -53,11 +53,23 @@ public class LibraryController {
 
     //***** Artist Controller below*****//
 
+    @GetMapping(path = "/libraries/{libraryId}/artists")
+    public List<Artist> getLibraryArtists(@PathVariable(value = "libraryId") Long libraryId){
+        System.out.println("calling getLibraryArtists ==>");
+        return libraryService.getLibraryArtists(libraryId);
+    }
+
+    
+
     @PostMapping("/libraries/{libraryId}/artists")
     public Artist createLibraryArtist(
             @PathVariable(value = "libraryId") Long libraryId, @RequestBody Artist artistObject){
         System.out.println("Calling createCategoryRecipe()");
         return libraryService.createLibraryArtist(libraryId, artistObject);
     }
+
+
+
+
 
 }
