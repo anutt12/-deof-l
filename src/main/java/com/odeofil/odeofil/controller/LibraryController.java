@@ -28,7 +28,7 @@ public class LibraryController {
 //    @Autowired
 //    public void setLibraryRepository(LibraryRepository libraryRepository) {this.libraryRepository = libraryRepository; }
 
-    @GetMapping("/hello-Willie/")
+    @GetMapping("/hello-willie/")
     public String helloWillie() {
         return "Hello Willie!";
     }

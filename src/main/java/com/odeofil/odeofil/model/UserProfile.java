@@ -29,7 +29,7 @@ private User user;
     public UserProfile() {
     }
 
-    public UserProfile(Long id, String userName, String profileDescription) {
+    public UserProfile(Long id, String firstName, String lastName, String profileDescription) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

@@ -36,10 +36,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String jwt = null;
 
         //Checking if Bearer is present in Header or not because When sending api request with
-        // token bearer should be present in that  if (AuthorizationHeader != null && AuthorizationHeader.startsWith("Bearer ")) {
-        jwt = AuthorizationHeader.substring(7);
-        username = jwtUtils.extractUsername(jwt);
-
+        // token bearer should be present in that
+        if (AuthorizationHeader != null && AuthorizationHeader.startsWith("Bearer ")) {
+            jwt = AuthorizationHeader.substring(7);
+            username = jwtUtils.extractUsername(jwt);
+        }
         //Token is being passed to JwtUtil class for details extraction
         if (username != null && SecurityContextHolder.getContext().
                 getAuthentication() == null) {

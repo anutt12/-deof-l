@@ -28,7 +28,7 @@ public class Library {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Album> albumList;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;

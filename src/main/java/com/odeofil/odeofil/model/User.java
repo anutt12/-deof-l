@@ -2,8 +2,11 @@ package com.odeofil.odeofil.model;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -24,6 +27,18 @@ public class User {
 @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
+@OneToMany(mappedBy = "user")
+@LazyCollection(LazyCollectionOption.FALSE)
+private List<Library> libraryList;
+
+    @OneToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Artist> artistList;
+
+    @OneToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Album> albumList;
+
 @OneToOne(cascade = CascadeType.ALL)
 @JoinColumn(name = "profile_id", referencedColumnName = "id")
 private UserProfile userProfile;
@@ -31,7 +46,7 @@ private UserProfile userProfile;
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String emailAddress, String password) {
+    public User(Long id, String userName, String emailAddress, String password) {
         this.id = id;
         this.userName = userName;
         this.emailAddress = emailAddress;
