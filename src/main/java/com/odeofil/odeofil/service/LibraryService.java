@@ -192,4 +192,23 @@ public class LibraryService {
 
     //*****Service for Album Class*****//
 
+    public Album createLibraryAlbum(Long libraryId, Album albumObject) {
+        System.out.println("service calling createLibraryAlbum ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null) {
+            throw new InformationNotFoundException(
+                    "library with id " + libraryId + " does not belong to this user or library does not exist");
+        }
+        Album album = albumRepository.findByNameAndUserId(albumObject.getName(), userDetails.getUser().getId());
+        if (album != null) {
+            throw new InformationExistException("album with name " + album.getName() + " already exists");
+        }
+        albumObject.setUser(userDetails.getUser());
+        albumObject.setLibrary(library);
+        return albumRepository.save(albumObject);
+    }
+
+    
 }
