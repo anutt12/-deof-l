@@ -59,15 +59,27 @@ public class LibraryController {
         return libraryService.getLibraryArtists(libraryId);
     }
 
-    
+    @GetMapping(path = "/libraries/{libraryId}/artists/{artistId}")
+    public Artist getLibraryArtist(@PathVariable(value = "libraryId") Long libraryId,
+                            @PathVariable(value = "artistId") Long artistId) {
+        System.out.println("calling getLibraryArtist ==>");
+        return libraryService.getLibraryArtist(libraryId, artistId);
+    }
 
     @PostMapping("/libraries/{libraryId}/artists")
     public Artist createLibraryArtist(
             @PathVariable(value = "libraryId") Long libraryId, @RequestBody Artist artistObject){
-        System.out.println("Calling createCategoryRecipe()");
+        System.out.println("Calling createLibraryArtist()");
         return libraryService.createLibraryArtist(libraryId, artistObject);
     }
 
+    @PutMapping("/libraries/{libraryId}/artists/{artistId}")
+    public Artist updateLibraryArtists(
+            @PathVariable(value = "libraryId") Long libraryId,
+            @PathVariable(value = "artistId") Long artistId, @RequestBody Artist artistObject) {
+        System.out.println("Calling updateLibraryArtist");
+        return libraryService.updateLibraryArtists(libraryId, artistId, artistObject);
+    }
 
 
 
