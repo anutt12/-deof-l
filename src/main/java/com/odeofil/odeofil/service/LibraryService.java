@@ -190,4 +190,6 @@ public class LibraryService {
         return artist.get();
     }
 
+    //*****Service for Album Class*****//
+
 }
