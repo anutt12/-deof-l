@@ -125,6 +125,15 @@ public class LibraryController {
         return libraryService.updateLibraryAlbums(libraryId, albumId, albumObject);
     }
 
-    
+    @DeleteMapping("/libraries/{libraryId}/albums/{albumId}")
+    public ResponseEntity<HashMap> deleteLibraryAlbum(
+            @PathVariable(value = "libraryId") Long libraryId,
+            @PathVariable(value = "albumId") Long albumId){
+        System.out.println("calling deleteLibraryAlbum() ==>");
+        libraryService.deleteLibraryAlbum(libraryId, albumId);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("Status", "Album with ID: " + albumId + " was successfully deleted");
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
+    }
 
 }
