@@ -1,5 +1,6 @@
 package com.odeofil.odeofil.controller;
 
+import com.odeofil.odeofil.model.Album;
 import com.odeofil.odeofil.model.Artist;
 import com.odeofil.odeofil.model.Library;
 import com.odeofil.odeofil.repository.LibraryRepository;
@@ -95,5 +96,18 @@ public class LibraryController {
         return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
+    //*****Album Controller*****//
+    @GetMapping(path = "/libraries/{libraryId}/albums")
+    public List<Album> getLibraryAlbums(@PathVariable(value = "libraryId") Long libraryId){
+        System.out.println("calling getLibraryAlbums ==>");
+        return libraryService.getLibraryAlbums(libraryId);
+    }
+
+    @GetMapping(path = "/libraries/{libraryId}/albums/{albumId}")
+    public Album getLibraryAlbum(@PathVariable(value = "libraryId") Long libraryId,
+                                 @PathVariable(value = "albumId") Long albumId) {
+        System.out.println("calling getLibraryAlbum ==>");
+        return libraryService.getLibraryAlbum(libraryId, albumId);
+    }
 
 }
