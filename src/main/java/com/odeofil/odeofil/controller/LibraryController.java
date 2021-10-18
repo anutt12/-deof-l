@@ -12,23 +12,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api")
-
 public class LibraryController {
 
-    private LibraryRepository libraryRepository;
+//    private LibraryRepository libraryRepository;
 
     private LibraryService libraryService;
 
     @Autowired
-    public void setLibraryService(LibraryService libraryService) {this.libraryService = libraryService;}
+    public void setLibraryService(LibraryService libraryService) {this.libraryService = libraryService; }
 
-    @Autowired
-    public void setLibraryRepository(LibraryRepository libraryRepository) {this.libraryRepository = libraryRepository;}
+//    @Autowired
+//    public void setLibraryRepository(LibraryRepository libraryRepository) {this.libraryRepository = libraryRepository; }
 
-    @GetMapping("/hello-Willie")
+    @GetMapping("/hello-Willie/")
     public String helloWillie() {
         return "Hello Willie!";
     }
@@ -53,6 +53,7 @@ public class LibraryController {
     @PutMapping("/libraries/{libraryId}")
     public Library updateLibrary(@PathVariable(value = "libraryId") Long libraryId, @RequestBody Library libraryObject) {
         System.out.println("calling updateLibrary ==>");
+        Optional<Library> library = Optional.ofNullable(libraryService.getLibrary(libraryId));
         return libraryService.updateLibrary(libraryId, libraryObject);
     }
 

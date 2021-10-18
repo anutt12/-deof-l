@@ -36,8 +36,8 @@ public class LibraryService {
         this.artistRepository = artistRepository;
     }
 
-//    @Autowired
-//    public void setAlbumRepository(AlbumRepository albumRepository) {this.albumRepository = albumRepository;}
+    @Autowired
+    public void setAlbumRepository(AlbumRepository albumRepository) {this.albumRepository = albumRepository;}
 
     public List<Library> getLibraries(){
         System.out.println("service calling getLibraries ==>");
@@ -54,7 +54,7 @@ public class LibraryService {
         System.out.println("service calling getLibraries");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(userDetails.getUser().getId());
-        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        Library library = libraryRepository.findByIdAndUserId(libraryId, userDetails.getUser().getId());
         if (library == null) {
             throw new InformationNotFoundException("no libraries found for " + userDetails.getUser().getId());
         } else {
@@ -78,7 +78,7 @@ public class LibraryService {
     public Library updateLibrary(Long libraryId, Library libraryObject) {
         System.out.println("service calling updateLibrary()");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        Library library = libraryRepository.findByIdAndUserId(libraryId, userDetails.getUser().getId());
         if (library == null) {
             throw new InformationNotFoundException("library with id " + libraryId + " not found");
         } else {
@@ -92,7 +92,7 @@ public class LibraryService {
     public String deleteLibrary(Long libraryId) {
         System.out.println("service calling delete Library");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        Library library = libraryRepository.findByIdAndUserId(libraryId, userDetails.getUser().getId());
         if(library == null){
             throw new InformationNotFoundException("library with the id " + libraryId + " not found");
         } else {
@@ -107,7 +107,7 @@ public class LibraryService {
         System.out.println("service calling createLibraryArtist ==>");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
-        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        Library library = libraryRepository.findByIdAndUserId(libraryId, userDetails.getUser().getId());
         if (library == null) {
             throw new InformationNotFoundException(
                     "library with id " + libraryId + " does not belong to this user or library does not exist");
@@ -124,7 +124,7 @@ public class LibraryService {
     public List<Artist> getLibraryArtists(Long libraryId){
         System.out.println("Calling the service for the view");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        Library library = libraryRepository.findByIdAndUserId(libraryId, userDetails.getUser().getId());
         if (library == null){
             throw new InformationNotFoundException("library with id " + libraryId + " " +
                     "does not belong to this user or library does not exist");
@@ -136,12 +136,12 @@ public class LibraryService {
         System.out.println("invoking the Services Method updateLibraryArtists");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
-        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        Library library = libraryRepository.findByIdAndUserId(libraryId, userDetails.getUser().getId());
         if (library == null) {
             throw new InformationNotFoundException("library with id " + libraryId +
                     " does not belong to this user or library does not exist");
         }
-        Optional<Artist> artist = artistRepository.findByLibraryId(
+        Optional<Artist> artist = artistRepository.findById(
                 libraryId).stream().filter(p -> p.getId().equals(libraryId)).findFirst();
         if (!artist.isPresent()) {
             throw new InformationNotFoundException("artist with id " + artistId +
@@ -160,12 +160,12 @@ public class LibraryService {
     public void deleteLibraryArtist(Long libraryId, Long artistId) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
-        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        Library library = libraryRepository.findByIdAndUserId(libraryId, userDetails.getUser().getId());
         if (library == null) {
             throw new InformationNotFoundException("library with id " + libraryId +
                     " doest not belong to this user or library does not exist");
         }
-        Optional<Artist> artist = artistRepository.findByLibraryId(
+        Optional<Artist> artist = artistRepository.findById(
                 libraryId).stream().filter(p -> p.getId().equals(artistId)).findFirst();
         if (!artist.isPresent()) {
             throw new InformationNotFoundException("artist with id " + artistId +
@@ -178,12 +178,12 @@ public class LibraryService {
         System.out.println("service calling getLibraryArtist");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
-        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        Library library = libraryRepository.findByIdAndUserId(libraryId, userDetails.getUser().getId());
         if (library == null) {
             throw new InformationNotFoundException("library with id " + libraryId +
                     " doest not belong to this user or library does not exist");
         }
-        Optional<Artist> artist = artistRepository.findByLibraryId(
+        Optional<Artist> artist = artistRepository.findById(
                 libraryId).stream().filter(p -> p.getId().equals(artistId)).findFirst();
         if (!artist.isPresent()) {
             throw new InformationNotFoundException("artist with id " + artistId +
@@ -198,7 +198,7 @@ public class LibraryService {
         System.out.println("service calling createLibraryAlbum ==>");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
-        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        Library library = libraryRepository.findByIdAndUserId(libraryId, userDetails.getUser().getId());
         if (library == null) {
             throw new InformationNotFoundException(
                     "library with id " + libraryId + " does not belong to this user or library does not exist");
@@ -215,7 +215,7 @@ public class LibraryService {
     public List<Album> getLibraryAlbums(Long libraryId){
         System.out.println("Calling the service for the view");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        Library library = libraryRepository.findByIdAndUserId(libraryId, userDetails.getUser().getId());
         if (library == null){
             throw new InformationNotFoundException("library with id " + libraryId + " " +
                     "does not belong to this user or library does not exist");
@@ -227,7 +227,7 @@ public class LibraryService {
         System.out.println("service calling getLibraryAlbum");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
-        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        Library library = libraryRepository.findByIdAndUserId(libraryId, userDetails.getUser().getId());
         if (library == null) {
             throw new InformationNotFoundException("library with id " + libraryId +
                     " doest not belong to this user or library does not exist");
@@ -245,7 +245,7 @@ public class LibraryService {
         System.out.println("invoking the Services Method updateLibraryAlbums");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
-        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        Library library = libraryRepository.findByIdAndUserId(libraryId, userDetails.getUser().getId());
         if (library == null) {
             throw new InformationNotFoundException("library with id " + libraryId +
                     " does not belong to this user or library does not exist");
@@ -269,7 +269,7 @@ public class LibraryService {
     public void deleteLibraryAlbum(Long libraryId, Long albumId) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
-        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        Library library = libraryRepository.findByIdAndUserId(libraryId, userDetails.getUser().getId());
         if (library == null) {
             throw new InformationNotFoundException("library with id " + libraryId +
                     " doest not belong to this user or library does not exist");

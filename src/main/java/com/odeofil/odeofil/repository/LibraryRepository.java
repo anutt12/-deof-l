@@ -14,7 +14,7 @@ public interface LibraryRepository extends JpaRepository<Library, Long> {
 
     List<Library> findByUserId(Long userId);
 
-    Library findByLibraryIdAndUserId(Long libraryId, Long userId);
+//    Library findByLibraryIdAndUserId(Long libraryId, Long userId);
 
     Library findByUserIdAndName(Long userId, String libraryName);
 
