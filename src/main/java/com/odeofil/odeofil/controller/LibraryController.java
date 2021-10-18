@@ -110,4 +110,12 @@ public class LibraryController {
         return libraryService.getLibraryAlbum(libraryId, albumId);
     }
 
+    @PostMapping("/libraries/{libraryId}/albums")
+    public Album createLibraryAlbum(
+            @PathVariable(value = "libraryId") Long libraryId, @RequestBody Album albumObject){
+        System.out.println("Calling createLibraryAlbum()");
+        return libraryService.createLibraryAlbum(libraryId, albumObject);
+    }
+
+
 }
