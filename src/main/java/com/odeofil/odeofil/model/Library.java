@@ -24,6 +24,10 @@ public class Library {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Artist> artistList;
 
+    @OneToMany(mappedBy = "library", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Album> albumList;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore

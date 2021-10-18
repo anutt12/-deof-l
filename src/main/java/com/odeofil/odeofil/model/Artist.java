@@ -40,9 +40,9 @@ public class Artist {
     @JoinColumn(name = "artist_id")
     private Album album;
 
-    @OneToMany(mappedBy = "artist"), orphanRemoval = true)
-    @LazyCollection(LazyCollection.FALSE)
-    private List<Album> albumList;
+//    @OneToMany(mappedBy = "artist"), orphanRemoval = true)
+//    @LazyCollection(LazyCollection.FALSE)
+//    private List<Album> albumList;
 
     public Artist() {
     }
