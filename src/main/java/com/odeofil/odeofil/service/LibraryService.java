@@ -5,6 +5,7 @@ import com.odeofil.odeofil.exception.InformationNotFoundException;
 import com.odeofil.odeofil.model.Album;
 import com.odeofil.odeofil.model.Artist;
 import com.odeofil.odeofil.model.Library;
+import com.odeofil.odeofil.repository.AlbumRepository;
 import com.odeofil.odeofil.repository.ArtistRepository;
 import com.odeofil.odeofil.repository.LibraryRepository;
 import com.odeofil.odeofil.security.MyUserDetails;
@@ -23,7 +24,7 @@ public class LibraryService {
 
     private LibraryRepository libraryRepository;
     private ArtistRepository artistRepository;
-    // private AlbumRepository albumRepository;
+    private AlbumRepository albumRepository;
 
     @Autowired
     public void setLibraryRepository(LibraryRepository libraryRepository) {
@@ -281,5 +282,5 @@ public class LibraryService {
         }
         albumRepository.deleteById(album.get().getId());
     }
-    
+
 }

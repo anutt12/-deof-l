@@ -23,7 +23,7 @@ public class Album {
     @ManyToOne
     @JoinColumn(name = "userProfileId")
     @JsonIgnore
-    private UserProfile userProfile;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "libraryId")
@@ -78,12 +78,12 @@ public class Album {
         isPublic = aPublic;
     }
 
-    public UserProfile getUserProfile() {
-        return userProfile;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Library getLibrary() {
