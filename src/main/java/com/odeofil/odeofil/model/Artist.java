@@ -2,8 +2,10 @@ package com.odeofil.odeofil.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "artists")
@@ -32,6 +34,15 @@ public class Artist {
     @ManyToOne
     @JoinColumn(name = "library_id")
     private Library library;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Album album;
+
+    @OneToMany(mappedBy = "artist"), orphanRemoval = true)
+    @LazyCollection(LazyCollection.FALSE)
+    private List<Album> albumList;
 
     public Artist() {
     }

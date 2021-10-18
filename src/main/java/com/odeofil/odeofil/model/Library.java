@@ -24,10 +24,6 @@ public class Library {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Artist> artistList;
 
-//    @OneToMany(mappedBy = "library"), orphanRemoval = true)
-//    @LazyCollection(LazyCollection.FALSE)
-//    private List<Album> albumList;
-
     @OneToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
@@ -43,10 +39,6 @@ public class Library {
     public Library(){
 
     }
-
-
-
-
     public Long getId() {
         return id;
     }
@@ -72,9 +64,9 @@ public class Library {
         this.user = user;
     }
 
-//    public List<Album> getAlbumList(){return albumList;}
-//
-//    public void  setAlbumList(List<Album> albumList) {this.albumList = albumList;}
+    public List<Album> getAlbumList(){return albumList;}
+
+    public void  setAlbumList(List<Album> albumList) {this.albumList = albumList;}
 
     public String getName() {
         return name;

@@ -2,8 +2,10 @@ package com.odeofil.odeofil.service;
 
 import com.odeofil.odeofil.exception.InformationExistException;
 import com.odeofil.odeofil.exception.InformationNotFoundException;
+import com.odeofil.odeofil.model.Album;
 import com.odeofil.odeofil.model.Artist;
 import com.odeofil.odeofil.model.Library;
+import com.odeofil.odeofil.repository.AlbumRepository;
 import com.odeofil.odeofil.repository.ArtistRepository;
 import com.odeofil.odeofil.repository.LibraryRepository;
 import com.odeofil.odeofil.security.MyUserDetails;
@@ -22,7 +24,7 @@ public class LibraryService {
 
     private LibraryRepository libraryRepository;
     private ArtistRepository artistRepository;
-    // private AlbumRepository albumRepository;
+    private AlbumRepository albumRepository;
 
     @Autowired
     public void setLibraryRepository(LibraryRepository libraryRepository) {
@@ -188,6 +190,97 @@ public class LibraryService {
                     " does not belong to this user or artist does not exist");
         }
         return artist.get();
+    }
+
+    //*****Service for Album Class*****//
+
+    public Album createLibraryAlbum(Long libraryId, Album albumObject) {
+        System.out.println("service calling createLibraryAlbum ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null) {
+            throw new InformationNotFoundException(
+                    "library with id " + libraryId + " does not belong to this user or library does not exist");
+        }
+        Album album = albumRepository.findByNameAndUserId(albumObject.getName(), userDetails.getUser().getId());
+        if (album != null) {
+            throw new InformationExistException("album with name " + album.getName() + " already exists");
+        }
+        albumObject.setUser(userDetails.getUser());
+        albumObject.setLibrary(library);
+        return albumRepository.save(albumObject);
+    }
+
+    public List<Album> getLibraryAlbums(Long libraryId){
+        System.out.println("Calling the service for the view");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null){
+            throw new InformationNotFoundException("library with id " + libraryId + " " +
+                    "does not belong to this user or library does not exist");
+        }
+        return library.getAlbumList();
+    }
+
+    public Album getLibraryAlbum(Long libraryId, Long albumId) {
+        System.out.println("service calling getLibraryAlbum");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null) {
+            throw new InformationNotFoundException("library with id " + libraryId +
+                    " doest not belong to this user or library does not exist");
+        }
+        Optional<Album> album = albumRepository.findByLibraryId(
+                libraryId).stream().filter(p -> p.getId().equals(albumId)).findFirst();
+        if (!album.isPresent()) {
+            throw new InformationNotFoundException("album with id " + albumId +
+                    " does not belong to this user or album does not exist");
+        }
+        return album.get();
+    }
+
+    public Album updateLibraryAlbums(Long libraryId, Long albumId, Album albumObject) {
+        System.out.println("invoking the Services Method updateLibraryAlbums");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null) {
+            throw new InformationNotFoundException("library with id " + libraryId +
+                    " does not belong to this user or library does not exist");
+        }
+        Optional<Album> album = albumRepository.findByLibraryId(
+                libraryId).stream().filter(p -> p.getId().equals(libraryId)).findFirst();
+        if (!album.isPresent()) {
+            throw new InformationNotFoundException("album with id " + albumId +
+                    " does not belong to this user or album does not exist");
+        }
+        Album oldAlbum = albumRepository.findByNameAndUserIdAndIdIsNot(
+                albumObject.getName(), userDetails.getUser().getId(), albumId);
+        if (oldAlbum != null) {
+            throw new InformationExistException("album with name " + oldAlbum.getName() + " already exists");
+        }
+        album.get().setName(albumObject.getName());
+        album.get().setDescription(albumObject.getDescription());
+        return albumRepository.save(album.get());
+    }
+
+    public void deleteLibraryAlbum(Long libraryId, Long albumId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Library library = libraryRepository.findByLibraryIdAndUserId(libraryId, userDetails.getUser().getId());
+        if (library == null) {
+            throw new InformationNotFoundException("library with id " + libraryId +
+                    " doest not belong to this user or library does not exist");
+        }
+        Optional<Album> album = albumRepository.findByLibraryId(
+                libraryId).stream().filter(p -> p.getId().equals(albumId)).findFirst();
+        if (!album.isPresent()) {
+            throw new InformationNotFoundException("album with id " + albumId +
+                    " does not belong to this user or album does not exist");
+        }
+        albumRepository.deleteById(album.get().getId());
     }
 
 }
