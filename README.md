@@ -65,12 +65,12 @@ _**A place for people to organize and share their personal physical music collec
 
 ## Our Approach:
 We wanted to find a real world need to address with this project. Andy is an avid vinyl collector but found he didn't have a way to know if he had a physical copy at home while browsing in a store. Andy's friend let him know that he accidentally bought an extra record since we started project which we found funny. We spent our first day planning on how we would proceed with the project. We found [Discogs API](https://www.discogs.com/developers) which would help us access their existing database of physical releases of music.  
- \
+  
 We utilized Microsoft Sharepoint to help us organize our plan for this project. Word allowed us to work on our User Stories' together at the same time. We also used Planner to create a digital version of a Kanban Board/To Do List to make sure we stayed on track. We created separate to do lists for various packages in the project and included an undefined package for things that did not exactly fit in the others. We enjoyed using this tool and found it could be used in future/longer term projects. It allows you to assign due date to a task and a task to an individual.
 
 ## Next Version Wants:
 Our original ERD diagram from LucidApp shows different formats of music. We prioritized items in our Minimum Viable Product and realized this would be something that needed to be added later on in the project's development. We also planned on integrating Discogs' API to help users search through existing music to add to their libraries. This project was a great exercize in "keeping it simple" as we realized we could overcomplicate things by repeating ourselves. We originally were only going to allow a user to have one library. Later on, we wanted to add a feature for a Wish List but realized allowing multiple libraries would solve this issue.
-\
+  
 We have researched how to implement open-source API's and this led to even more ideas of what to add to the app. We plan on utilizing our experience with adding Discogs API to use Google Maps API to only show music stores close to the user's physical location. The possibilities are endless, and we are excited to continue building this API in the future.  
 
 ## Roses :rose:, Thorns :cactus:, and Bugs :bug:  
