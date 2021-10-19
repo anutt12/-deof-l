@@ -103,5 +103,13 @@ public class Artist {
     public void setLibrary(Library library) {
         this.library = library;
     }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
 }
 
