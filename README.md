@@ -68,4 +68,5 @@ We wanted to find a real world need to address with this project. Andy is an avi
 We utilized Microsoft Sharepoint to help us organize our plan for this project. Word allowed us to work on our User Stories' together at the same time. We also used Planner to create a digital version of a Kanban Board/To Do List to make sure we stayed on track. We created separate to do lists for various packages in the project and included an undefined package for things that did not exactly fit in the others. We enjoyed using this tool and found it could be used in future/longer term projects. It allows you to assign due date to a task and a task to an individual.
 
 ## :rose: Roses and Thorns :cactus:
-
+:rose: Paired Programming helped us communicate with each other different mindsets on how to approach the project. It allowed us to identify areas of opportunity and learn together as we progressed.  
+:cactus: Postman deleted all of our endpoints due to a forced update. We did not realize that, even though we saved regularly, it would delete all that we worked on.
