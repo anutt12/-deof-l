@@ -58,7 +58,7 @@ _**A place for people to organize and share their personal physical music collec
 
 ## Technology Used
 • Java 11  
-• Spring Boot and Maven dependencies
+• Spring Boot and Maven dependencies  
 • LucidApp  
 • Postman  
 • PostgreSQL  
