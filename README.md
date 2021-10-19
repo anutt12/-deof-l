@@ -57,7 +57,8 @@ _**A place for people to organize and share their personal physical music collec
 | POST | /auth/users/register | Create a user profile |
 
 ## Technology Used
-• Spring Boot, Java, Maven in IntelliJ  
+• Java 11  
+• Spring Boot and Maven dependencies
 • LucidApp  
 • Postman  
 • PostgreSQL  
