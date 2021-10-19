@@ -5,9 +5,9 @@ _**A place for people to organize and share their personal physical music collec
 
 ## ERD Diagram
 
-![ERD Diagram Generated with LucidApp](/Users/matthompson/Desktop/java-project-2/paypal-java-project-2/project-images/Lucid_ERD.jpeg)
+![ERD Diagram Generated with LucidApp](paypal-java-project-2/project-images/Lucid_ERD.jpeg)
 
-![ERD Diagram Generated with IntelliJ](/Users/matthompson/Desktop/java-project-2/paypal-java-project-2/project-images/paypal-java-project-2.uml)
+![ERD Diagram Generated with IntelliJ](paypal-java-project-2/project-images/paypal-java-project-2.uml)
 
 ### User Stories 
 **(Bronze)**  
