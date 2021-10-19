@@ -7,7 +7,7 @@ _**A place for people to organize and share their personal physical music collec
 
 ![ERD Diagram Generated with LucidApp](project-images/Lucid_ERD.jpeg)
 
-![ERD Diagram Generated with IntelliJ](project-images/paypal-java-project-2.uml)
+![ERD Diagram Generated with IntelliJ](project-images/IntelliJ-ERD.png)
 
 ### User Stories 
 **(Bronze)**  
