@@ -81,5 +81,7 @@ We have researched how to implement open-source API's and this led to even more 
 :cactus: Postman deleted all of our endpoints due to a forced update. We did not realize that, even though we saved regularly, it would delete all that we worked on.  
 :cactus: Some of our endpoints are pulling too much data and causing infinite loops. This is frustrating while testing because certain classes do not exhibit the same behavior. Due to time constraints, we have not been able to find the root cause of this.  
 :bug: Some id's generate automatically for the different classes. We have found certain ones do not assign an id when an object is created. We can manually add these for testing purposes but plan on prioritizing this bug in our next version.  
-:bug: Postman would allow us to access some information that we created at times. Later on, it would not allow us to call the data even though we were using the same method.
-
+:bug: Postman would allow us to access some information that we created at times. Later on, it would not allow us to call the data even though we were using the same method.  
+  
+> _"Still is still moving to me." -Willie Nelson_  
+![Introspective Willie Nelson](https://media.giphy.com/media/94latygxUTXuE/giphy.gif)
