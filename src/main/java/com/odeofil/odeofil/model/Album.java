@@ -21,16 +21,16 @@ public class Album {
     private boolean isPublic;
 
     @ManyToOne
-    @JoinColumn(name = "user_Id")
+    @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "library_Id")
+    @JoinColumn(name = "library_id")
     private Library library;
 
     @ManyToOne
-    @JoinColumn(name = "artist_Id")
+    @JoinColumn(name = "artist_id")
     private Artist artist;
 
     @Column

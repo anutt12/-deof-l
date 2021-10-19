@@ -18,15 +18,15 @@ import java.util.Optional;
 @RequestMapping(path = "/api")
 public class LibraryController {
 
-//    private LibraryRepository libraryRepository;
+    private LibraryRepository libraryRepository;
 
     private LibraryService libraryService;
 
     @Autowired
     public void setLibraryService(LibraryService libraryService) {this.libraryService = libraryService; }
 
-//    @Autowired
-//    public void setLibraryRepository(LibraryRepository libraryRepository) {this.libraryRepository = libraryRepository; }
+    @Autowired
+    public void setLibraryRepository(LibraryRepository libraryRepository) {this.libraryRepository = libraryRepository; }
 
     @GetMapping("/hello-willie/")
     public String helloWillie() {

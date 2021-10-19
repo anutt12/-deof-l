@@ -102,4 +102,28 @@ private UserProfile userProfile;
     public void setUserProfile(UserProfile userProfile){
         this.userProfile = userProfile;
     }
+
+    public List<Library> getLibraryList() {
+        return libraryList;
+    }
+
+    public void setLibraryList(List<Library> libraryList) {
+        this.libraryList = libraryList;
+    }
+
+    public List<Artist> getArtistList() {
+        return artistList;
+    }
+
+    public void setArtistList(List<Artist> artistList) {
+        this.artistList = artistList;
+    }
+
+    public List<Album> getAlbumList() {
+        return albumList;
+    }
+
+    public void setAlbumList(List<Album> albumList) {
+        this.albumList = albumList;
+    }
 }
