@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/matthompson/Desktop/java-project-2/paypal-java-project-2</OriginalElement>
+  <nodes>
+    <node x="322.0" y="600.0">com.odeofil.odeofil.model.Album</node>
+    <node x="446.0" y="375.0">com.odeofil.odeofil.model.response.LoginResponse</node>
+    <node x="0.0" y="450.0">com.odeofil.odeofil.controller.UserController</node>
+    <node x="304.0" y="75.0">com.odeofil.odeofil.OdeofilApplicationTests</node>
+    <node x="0.0" y="225.0">com.odeofil.odeofil.OdeofilApplication</node>
+    <node x="206.0" y="525.0">com.odeofil.odeofil.service.UserService</node>
+    <node x="226.0" y="375.0">com.odeofil.odeofil.repository.UserRepository</node>
+    <node x="343.0" y="0.0">MavenWrapperDownloader</node>
+    <node x="470.0" y="600.0">com.odeofil.odeofil.model.Artist</node>
+    <node x="0.0" y="525.0">com.odeofil.odeofil.model.response.LoginRequest</node>
+    <node x="0.0" y="675.0">com.odeofil.odeofil.model.User</node>
+    <node x="0.0" y="375.0">com.odeofil.odeofil.repository.ArtistRepository</node>
+    <node x="0.0" y="75.0">com.odeofil.odeofil.exception.InformationExistException</node>
+    <node x="233.0" y="300.0">com.odeofil.odeofil.controller.LibraryController</node>
+    <node x="213.0" y="450.0">com.odeofil.odeofil.security.MyUserDetails</node>
+    <node x="464.0" y="300.0">com.odeofil.odeofil.security.JwtRequestFilter</node>
+    <node x="244.0" y="225.0">com.odeofil.odeofil.repository.LibraryRepository</node>
+    <node x="426.0" y="450.0">com.odeofil.odeofil.service.LibraryService</node>
+    <node x="0.0" y="150.0">com.odeofil.odeofil.security.MyUserDetailsService</node>
+    <node x="0.0" y="0.0">com.odeofil.odeofil.exception.InformationNotFoundException</node>
+    <node x="400.0" y="525.0">com.odeofil.odeofil.model.UserProfile</node>
+    <node x="0.0" y="600.0">com.odeofil.odeofil.security.JWTUtils</node>
+    <node x="169.0" y="600.0">com.odeofil.odeofil.model.Library</node>
+    <node x="272.0" y="150.0">com.odeofil.odeofil.security.SecurityConfigurer</node>
+    <node x="0.0" y="300.0">com.odeofil.odeofil.repository.AlbumRepository</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic" zoom="0.5544827586206896" showDependencies="false" x="325.0" y="352.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
